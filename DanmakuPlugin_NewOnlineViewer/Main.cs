@@ -5,7 +5,14 @@ using System.Text;
 
 namespace DanmakuPlugin_NewOnlineViewer
 {
-    public class Class1
+    public class Main : BilibiliDM_PluginFramework.DMPlugin
     {
+        public Main()
+        {
+            
+        }
+
+
+
     }
 }
