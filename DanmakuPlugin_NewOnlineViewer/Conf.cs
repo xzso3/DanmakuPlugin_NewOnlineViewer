@@ -7,17 +7,38 @@ namespace DanmakuPlugin_NewOnlineViewer
 {
     internal static partial class Conf
     {
-        internal static readonly string PluginName          = "在线人数视窗";
+        internal static readonly string PluginName          = "新·在线人数视窗";
         internal static readonly string PluginAuthor        = "Const";
         internal static readonly string PluginVersion       = "alpha-p1";
         internal static readonly string PluginDescription   = "在桌面部署一个置顶窗口浏览当前在线观众人数";
         internal static readonly string PluginContact       = "xzso3@outlook.com";
-        ///
-        /// 插件基本信息
-        /// 
+        ///<summary>
+        ///插件基本信息
+        ///</summary> 
 
 
 
 
+        internal static void Init()
+        {
+            InitPluginConfigs();
+            ///<summary>
+            ///初始化插件信息
+            ///</summary>
+
+        }
+
+        private static void InitPluginConfigs()
+        {
+            ///<summary>
+            ///传递初始化插件信息
+            ///</summary>
+            Main transferPluginConf = Main.that;
+            transferPluginConf.PluginAuth = PluginAuthor;
+            transferPluginConf.PluginCont = PluginContact;
+            transferPluginConf.PluginDesc = PluginDescription;
+            transferPluginConf.PluginName = PluginName;
+            transferPluginConf.PluginVer = PluginVersion;
+        }
     }
 }
