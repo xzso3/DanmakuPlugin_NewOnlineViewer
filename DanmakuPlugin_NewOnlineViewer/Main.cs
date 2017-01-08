@@ -14,8 +14,12 @@ namespace DanmakuPlugin_NewOnlineViewer
         
         public Main()
         {
-            
+            that = this;
 
+            Conf.Init();
+            ///<summary>
+            ///初始化插件    
+            /// </summary>
         }
 
 

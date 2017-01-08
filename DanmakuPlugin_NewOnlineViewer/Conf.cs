@@ -33,12 +33,12 @@ namespace DanmakuPlugin_NewOnlineViewer
             ///<summary>
             ///传递初始化插件信息
             ///</summary>
-            Main transferPluginConf = Main.that;
-            transferPluginConf.PluginAuth = PluginAuthor;
-            transferPluginConf.PluginCont = PluginContact;
-            transferPluginConf.PluginDesc = PluginDescription;
-            transferPluginConf.PluginName = PluginName;
-            transferPluginConf.PluginVer = PluginVersion;
+            Main transferPluginConf         = Main.that;
+            transferPluginConf.PluginAuth   = PluginAuthor;
+            transferPluginConf.PluginCont   = PluginContact;
+            transferPluginConf.PluginDesc   = PluginDescription;
+            transferPluginConf.PluginName   = PluginName;
+            transferPluginConf.PluginVer    = PluginVersion;
         }
     }
 }
