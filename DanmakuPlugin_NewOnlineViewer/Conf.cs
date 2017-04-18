@@ -22,6 +22,8 @@ namespace DanmakuPlugin_NewOnlineViewer
         internal static void Init()
         {
             InitPluginConfigs();
+            AsyncInitalizationEventBind();
+            System.Windows.MessageBox.Show("2333-1");
             ///<summary>
             ///初始化插件信息
             ///</summary>
@@ -39,6 +41,17 @@ namespace DanmakuPlugin_NewOnlineViewer
             transferPluginConf.PluginDesc   = PluginDescription;
             transferPluginConf.PluginName   = PluginName;
             transferPluginConf.PluginVer    = PluginVersion;
+           
+        }
+
+        private static void AsyncInitalizationEventBind()
+        {
+            Main transferPluginConf = Main.that;
+            transferPluginConf.ReceivedDanmaku += DanmukuEvents.ReceivedDanmaku;
+            transferPluginConf.Connected += DanmukuEvents.ConnectedEvent;
+            transferPluginConf.Disconnected += DanmukuEvents.DisconnectedEvent;
+            transferPluginConf.ReceivedRoomCount += DanmukuEvents.ReceivedRoomCount;
+
         }
     }
 }

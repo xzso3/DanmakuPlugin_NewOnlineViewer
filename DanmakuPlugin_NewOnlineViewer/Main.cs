@@ -11,18 +11,33 @@ namespace DanmakuPlugin_NewOnlineViewer
         /// <summary>
         /// 主插件本体，方便插件其他部分代码调用
         /// </summary>
-        
+        public ViewerWindow mainWindow = new ViewerWindow();
+
         public Main()
         {
             that = this;
-
+            
             Conf.Init();
+
+            
+
+            
             ///<summary>
             ///初始化插件    
             /// </summary>
+
+
         }
 
+        public override void Start()
+        {
+            base.Start();
+        }
 
+        public override void Admin()
+        {
+
+        }
 
     }
 }

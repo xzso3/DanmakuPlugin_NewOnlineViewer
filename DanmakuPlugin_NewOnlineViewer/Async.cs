@@ -12,15 +12,7 @@ namespace DanmakuPlugin_NewOnlineViewer
     ///弹幕姬事件异步处理
     /// </summary>
     
-        private static void AsyncInitalizationEventBind()
-        {
-            Main MainInitalizationSetup                  = Main.that;
-            MainInitalizationSetup.ReceivedDanmaku      += DanmukuEvents.ReceivedDanmaku;
-            MainInitalizationSetup.Connected            += DanmukuEvents.ConnectedEvent;
-            MainInitalizationSetup.Disconnected         += DanmukuEvents.DisconnectedEvent;
-            MainInitalizationSetup.ReceivedRoomCount    += DanmukuEvents.ReceivedRoomCount;
 
-        }
 
         
     }

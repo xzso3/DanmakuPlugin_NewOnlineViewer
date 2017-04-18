@@ -10,7 +10,7 @@ namespace DanmakuPlugin_NewOnlineViewer
     {
         internal static void ReceivedDanmaku(object _sender, ReceivedDanmakuArgs _args)
         {
-            Console.Write("Bullshit!");
+            Main.that.AddDM("you received a danmaku!");
         }
 
         internal static void DisconnectedEvent(object _sender, DisconnectEvtArgs _args)
@@ -25,7 +25,8 @@ namespace DanmakuPlugin_NewOnlineViewer
 
         internal static void ReceivedRoomCount(object _sender, ReceivedRoomCountArgs _args)
         {
-
+            Main.that.AddDM("you updated a room count data!");
         }
+        
     }
 }
