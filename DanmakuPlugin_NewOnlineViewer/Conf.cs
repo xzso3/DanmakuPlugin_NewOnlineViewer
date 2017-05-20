@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Threading.Tasks;
 
 namespace DanmakuPlugin_NewOnlineViewer
 {
@@ -12,7 +13,7 @@ namespace DanmakuPlugin_NewOnlineViewer
         #region 初始化插件信息
         internal static readonly string PluginName = "新·在线人数视窗";
         internal static readonly string PluginAuthor = "Const";
-        internal static readonly string PluginVersion = "alpha-p1";
+        internal static readonly string PluginVersion = "2017RC0-100";
         internal static readonly string PluginDescription = "在桌面部署一个置顶窗口浏览当前在线观众人数";
         internal static readonly string PluginContact = "xzso3@outlook.com";
         #endregion
@@ -34,6 +35,21 @@ namespace DanmakuPlugin_NewOnlineViewer
         /// 初始化窗口缩放比例
         /// </summary>
         public static double ZoomRatio = 1;
+        /// <summary>
+        /// 初始化窗口位置 X轴
+        /// </summary>
+        public static int WindowResX = 0;
+        /// <summary>
+        /// 初始化窗口位置 X轴
+        /// </summary>
+        public static int WindowResY = 0;
+        /// <summary>
+        /// 初始化窗口透明度
+        /// </summary>
+        public static int WindowOpacity = 100;
+
+        public static int ZoomRaw = 50;
+
         #endregion
 
         #region 初始化Windows API
@@ -50,23 +66,48 @@ namespace DanmakuPlugin_NewOnlineViewer
 
         internal static void Init()
         {
-            InitPluginConfigs();
-            AsyncInitalizationEventBind();
             ///<summary>
             ///初始化插件信息
             ///</summary>
+            InitPluginConfigs();
+            AsyncInitalizationEventBind();
 
 
+            /// <summary>
+            /// 设置鼠标穿透
+            /// </summary>
             Main.that.mainWindow.SourceInitialized += delegate
             {
                 var hwnd = new WindowInteropHelper(Main.that.mainWindow).Handle;
                 var extendedStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
                 SetWindowLong(hwnd, GWL_EXSTYLE, extendedStyle | WS_EX_TRANSPARENT);
             };
-            /// <summary>
-            /// 设置鼠标穿透
-            /// </summary>
+
+            IOEvent.ReadSettingsEvent();
+
+            double resW = 140;
+            double resH = 45;
+            double fontSizeTitle = 9;
+            double fontSizeValue = 30;
+
+            resW = resW * Conf.ZoomRatio;
+            resH = resH * Conf.ZoomRatio;
+            fontSizeTitle = fontSizeTitle * Conf.ZoomRatio;
+            fontSizeValue = fontSizeValue * Conf.ZoomRatio;
+            Main.that.mainWindow.Width = resW;
+            Main.that.mainWindow.Height = resH;
+            Main.that.mainWindow.labelViewer.FontSize = fontSizeTitle;
+            Main.that.mainWindow.textCount.FontSize = fontSizeValue;
+            Main.that.mainWindow.Alert.FontSize = fontSizeTitle * 0.8;
+            Main.that.mainWindow.Left = WindowResX;
+            Main.that.mainWindow.Top = WindowResY;
+            Main.that.mainWindow.Opacity = WindowOpacity / 100;
+            Main.that.controlWindow.opac_slider.Value = WindowOpacity;
+            Main.that.controlWindow.size_slider.Value = ZoomRaw;
         }
+
+
+
 
         internal static void InitPluginConfigs()
         {

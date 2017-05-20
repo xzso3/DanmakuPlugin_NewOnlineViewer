@@ -37,8 +37,6 @@ namespace DanmakuPlugin_NewOnlineViewer
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.Manual;
-            this.Left = 50;
-            this.Top = Screen.PrimaryScreen.Bounds.Height - 200;
             Topmost = true;
 
         }
@@ -57,7 +55,10 @@ namespace DanmakuPlugin_NewOnlineViewer
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            this.MouseDown += delegate { DragMove(); };
+            this.MouseDown += delegate {
+                DragMove();
+                ControlWindow.StartTimerTicking();
+            };
         }
     }
 }

@@ -51,7 +51,7 @@ namespace DanmakuPlugin_NewOnlineViewer
         
        internal static void ControlEvent()
         {
-
+            
         }
     }
     

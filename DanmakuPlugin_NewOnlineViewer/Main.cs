@@ -31,6 +31,8 @@ namespace DanmakuPlugin_NewOnlineViewer
             that = this;
 
             Conf.Init();
+            mainWindow.Show();
+            mainWindow.Hide();
         ///<summary>
         ///初始化插件    
         /// </summary>
@@ -83,5 +85,7 @@ namespace DanmakuPlugin_NewOnlineViewer
                 }));
             }
         }
+
+
     }
 }
