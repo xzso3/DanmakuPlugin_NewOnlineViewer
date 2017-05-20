@@ -42,6 +42,9 @@ namespace DanmakuPlugin_NewOnlineViewer
                 Main.that.mainWindow.textCount.Text = _count.ToString();
 
             }));
+            /// <summary>
+            /// 与WPF窗口进行交互
+            /// </summary>
         }
    
 

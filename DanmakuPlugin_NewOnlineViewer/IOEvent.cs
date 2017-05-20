@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.IO;
 
 namespace DanmakuPlugin_NewOnlineViewer
 {
-    internal static class Async
+    class IOEvent
     {
-    ///<summary>
-    ///弹幕姬事件异步处理
-    /// </summary>
-    
-
-
-        
+        private static void SaveSettingsEvent()
+        {
+             
+        }
     }
-
 }

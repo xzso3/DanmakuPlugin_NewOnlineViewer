@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace DanmakuPlugin_NewOnlineViewer
 {
@@ -20,12 +22,23 @@ namespace DanmakuPlugin_NewOnlineViewer
     /// </summary>
     public partial class ViewerWindow : Window
     {
+
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int SC_MOVE = 0xF010;
+        public const int HTCAPTION = 0x0002;
+
+
+
         public ViewerWindow()
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.Manual;
             this.Left = 50;
-            this.Top = Screen.PrimaryScreen.Bounds.Height - 90;
+            this.Top = Screen.PrimaryScreen.Bounds.Height - 200;
             Topmost = true;
 
         }
@@ -36,6 +49,15 @@ namespace DanmakuPlugin_NewOnlineViewer
             e.Cancel = true;
         }
 
+        private void Viewer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
 
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.MouseDown += delegate { DragMove(); };
+        }
     }
 }

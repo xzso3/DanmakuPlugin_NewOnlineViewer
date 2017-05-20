@@ -52,19 +52,8 @@ namespace DanmakuPlugin_NewOnlineViewer
         public override void Stop()
         {
             base.Stop();
+            mainWindow.Hide();
 
-            //mainWindow.SourceInitialized += delegate
-            //{
-            //    var hwnd = new WindowInteropHelper(that.mainWindow).Handle;
-            //    var extendedStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
-            //    SetWindowLong(hwnd, GWL_EXSTYLE, extendedStyle & ~WS_EX_TRANSPARENT);
-            //};
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
-            {
-                var hwnd = new WindowInteropHelper(that.mainWindow).Handle;
-                var extendedStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
-                SetWindowLong(hwnd, GWL_EXSTYLE, extendedStyle & ~WS_EX_TRANSPARENT);
-            }));
         }
 
 
@@ -73,5 +62,26 @@ namespace DanmakuPlugin_NewOnlineViewer
             this.controlWindow.Show();            
         }
 
+        public void MouseBypassEnable ()
+        {
+            if(Conf.MouseBypass == true)
+            {
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    var hwnd = new WindowInteropHelper(that.mainWindow).Handle;
+                    var extendedStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+                    SetWindowLong(hwnd, GWL_EXSTYLE, extendedStyle | WS_EX_TRANSPARENT);
+                }));
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    var hwnd = new WindowInteropHelper(that.mainWindow).Handle;
+                    var extendedStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+                    SetWindowLong(hwnd, GWL_EXSTYLE, extendedStyle & ~WS_EX_TRANSPARENT);
+                }));
+            }
+        }
     }
 }
