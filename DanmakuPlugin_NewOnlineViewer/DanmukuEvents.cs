@@ -39,20 +39,15 @@ namespace DanmakuPlugin_NewOnlineViewer
         {
             Main.that.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
             {
+                /// <summary>
+                /// 与WPF窗口进行交互
+                /// </summary>
                 Main.that.mainWindow.textCount.Text = _count.ToString();
 
             }));
-            /// <summary>
-            /// 与WPF窗口进行交互
-            /// </summary>
-        }
-   
 
-        
-       internal static void ControlEvent()
-        {
-            
         }
+
     }
     
 }
