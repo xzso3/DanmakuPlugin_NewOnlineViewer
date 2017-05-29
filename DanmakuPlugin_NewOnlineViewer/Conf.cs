@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace DanmakuPlugin_NewOnlineViewer
 {
@@ -13,7 +14,7 @@ namespace DanmakuPlugin_NewOnlineViewer
         #region 初始化插件信息
         internal static readonly string PluginName = "新·在线人数视窗";
         internal static readonly string PluginAuthor = "Const";
-        internal static readonly string PluginVersion = "2017RC0-100";
+        internal static readonly string PluginVersion = "1.0.1";
         internal static readonly string PluginDescription = "在桌面部署一个置顶窗口浏览当前在线观众人数";
         internal static readonly string PluginContact = "xzso3@outlook.com";
         #endregion
@@ -89,7 +90,7 @@ namespace DanmakuPlugin_NewOnlineViewer
             double resH = 45;
             double fontSizeTitle = 9;
             double fontSizeValue = 30;
-
+            Console.WriteLine("[DEBUG] ZoomRatio: " + ZoomRatio.ToString());
             resW = resW * Conf.ZoomRatio;
             resH = resH * Conf.ZoomRatio;
             fontSizeTitle = fontSizeTitle * Conf.ZoomRatio;
@@ -105,6 +106,7 @@ namespace DanmakuPlugin_NewOnlineViewer
             Main.that.controlWindow.opac_slider.Value = WindowOpacity;
             Main.that.controlWindow.size_slider.Value = ZoomRaw;
         }
+            
 
 
 

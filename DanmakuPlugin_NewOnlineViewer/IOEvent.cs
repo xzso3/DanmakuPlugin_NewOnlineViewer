@@ -31,8 +31,11 @@ namespace DanmakuPlugin_NewOnlineViewer
                 string[] SettingsArray = Settings.Split('/');
                 Conf.WindowResX = int.Parse(SettingsArray[0]);
                 Conf.WindowResY = int.Parse(SettingsArray[1]);
-                Conf.ZoomRatio = int.Parse(SettingsArray[2]) / 50;
+                Conf.ZoomRaw = int.Parse(SettingsArray[2]);
+                Conf.ZoomRatio = (double)Conf.ZoomRaw / 50;
                 Conf.WindowOpacity = int.Parse(SettingsArray[3]);
+                
+                
             }
         }
 

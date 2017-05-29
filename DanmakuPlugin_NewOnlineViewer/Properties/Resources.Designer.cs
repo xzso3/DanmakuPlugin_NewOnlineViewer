@@ -63,9 +63,9 @@ namespace DanmakuPlugin_NewOnlineViewer.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        internal static byte[] DIN_Medium_0 {
+        internal static byte[] DIN_Medium {
             get {
-                object obj = ResourceManager.GetObject("DIN_Medium_0", resourceCulture);
+                object obj = ResourceManager.GetObject("DIN_Medium", resourceCulture);
                 return ((byte[])(obj));
             }
         }

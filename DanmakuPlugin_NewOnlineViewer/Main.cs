@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Threading;
 
 namespace DanmakuPlugin_NewOnlineViewer
 {
@@ -33,6 +34,33 @@ namespace DanmakuPlugin_NewOnlineViewer
             Conf.Init();
             mainWindow.Show();
             mainWindow.Hide();
+
+            new Thread(() =>
+            {
+                try
+                {
+                    var plugin = this;
+                    var versionChecker = new VersionChecker("NewOnlineViewer");
+                    if (versionChecker.FetchInfo())
+                    {
+                        if (versionChecker.hasNewVersion(plugin.PluginVer))
+                        {
+                            string info = "插件有新版本了！最新版本:" + versionChecker.Version + "  当前版本:" + plugin.PluginVer;
+                            info += "  更新时间:" + versionChecker.UpdateDateTime.ToString("yyyy.MM.dd HH:mm");
+                            info += "\r\n" + "下载地址：" + versionChecker.WebPageUrl;
+                            info += "\r\n" + versionChecker.UpdateDescription;
+                            plugin.Log(info);
+                        }
+                    }
+                    else
+                    {
+                        plugin.Log("版本检查失败：" + versionChecker.lastException.Message);
+                    }
+
+                }
+                catch (Exception)
+                { }
+            });
         ///<summary>
         ///初始化插件    
         /// </summary>
